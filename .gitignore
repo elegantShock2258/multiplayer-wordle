@@ -12,7 +12,7 @@
 # next.js
 /.next/
 /out/
-
+/data
 # production
 /build
 
@@ -34,4 +34,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-*.css*
+*.css.map
+.env
+
+docker-compose.yml

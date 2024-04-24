@@ -14,6 +14,7 @@ module.exports = {
   // Lint & Prettify TS and JS files
   "**/*.(ts|tsx|js)": (filenames) => [
     //     `yarn eslint ${filenames.join(" ")}`,
+    "./scripts/compile_sass.sh",
     `yarn prettier --write ${filenames.join(" ")}`,
     "yarn run lint",
     "yarn run build",
@@ -22,6 +23,7 @@ module.exports = {
   // Build docker files
   "docker-compose.example.yml": (filenames) => [
     "cp docker-compose.example.yml docker-compose.yml",
+    "./scripts/compile_sass.sh",
     "docker compose build",
   ],
   Dockerfile: (filenames) => [
