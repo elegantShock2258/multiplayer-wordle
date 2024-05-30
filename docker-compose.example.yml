@@ -27,15 +27,30 @@ services:
     container_name: mongodb
     image: mongo:6.0
     volumes:
-      - ./data/mongo_dev:/data/db
+      - ./data/mongo_dev:/data/mongodb
     ports:
       - '27017:27017'
     networks:
       - node-webapp-network
     restart: always
 
+  mysql-db:
+    image: mysql:latest
+    ports:
+      - ${DB_PORT}:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+      MYSQL_DATABASE: rcdb
+    volumes:
+      - ./data/mysql_dev:/data/mongodb
+    networks:
+      - node-webapp-network
+
 volumes:
   mongodb:
+    driver: local
+
+  mysqlVolume:
     driver: local
 
 networks:
