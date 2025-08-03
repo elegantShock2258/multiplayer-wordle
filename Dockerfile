@@ -7,6 +7,9 @@ COPY . .
 
 RUN yarn
 RUN yarn run build
+RUN yarn add -D concurrently
 
 EXPOSE 3000
-CMD ["yarn", "start"]
+EXPOSE 4301
+
+CMD ["yarn", "concurrently", "\"yarn start\"", "\"yarn local:server\""]
