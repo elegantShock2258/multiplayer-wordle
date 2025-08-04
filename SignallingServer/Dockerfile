@@ -10,4 +10,4 @@ RUN yarn run build
 
 EXPOSE 4301
 
-CMD ["yarn","run", "local:server"]
+CMD ["node","dist/signallingServer.js"]

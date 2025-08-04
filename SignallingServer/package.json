@@ -1,0 +1,15 @@
+{
+  "name": "signalserver",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/signallingServer.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "socket.io": "^4.8.1",
+    "ws": "^8.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
