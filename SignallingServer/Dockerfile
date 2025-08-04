@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package*.json ./
 COPY . .
 
-#RUN yarn
+RUN yarn
 RUN yarn run build
 
 EXPOSE 4301
