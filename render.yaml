@@ -6,6 +6,7 @@ services:
     autoDeploy: true
     buildCommand: yarn install && yarn build
     startCommand: yarn start
+  
     repo: https://github.com/elegantShock2258/multiplayer-wordle
     region: singapore 
 
