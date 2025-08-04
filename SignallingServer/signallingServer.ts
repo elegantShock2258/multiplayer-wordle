@@ -138,5 +138,8 @@ io.on("connection", (socket) => {
     console.log("disconnected");
   });
 });
+const PORT = Number(process.env.NEXT_PUBLIC_SIGNAL_SERVER || 4301);
 
-io.listen(Number(process.env.NEXT_PUBLIC_SIGNAL_SERVER!));
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`Signalling server running on port ${PORT}`);
+});

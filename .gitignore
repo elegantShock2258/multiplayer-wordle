@@ -37,4 +37,5 @@ next-env.d.ts
 *.css.map
 .env
 SignallingServer/node_modules
+SignallingServer/dist
 docker-compose.yml
