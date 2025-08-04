@@ -5,11 +5,22 @@ services:
     plan: free
     dockerfilePath: ./Dockerfile
     autoDeploy: true
+    buildCommand: yarn install && yarn build
+    startCommand: yarn start
+    envVars:
+      - key: SIGNAL_SERVER
+        value: "https://signalserver.onrender.com"
+      - key: HOST_PORT
+        value: "3000"
     repo: https://github.com/elegantShock2258/multiplayer-wordle
     region: singapore 
 
   - type: web
     name: signalserver
+    buildCommand: |
+      yarn install
+    startCommand: |
+      yarn run local:server
     env: docker
     plan: free
     dockerfilePath: ./SignallingServer/Dockerfile
