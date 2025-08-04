@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky",
-    "local:server": "node signallingServer/signallingServer.ts"
+    "local:server": "node SignallingServer/signallingServer.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.14.0",

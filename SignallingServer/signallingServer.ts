@@ -85,7 +85,6 @@ io.on("connection", (socket) => {
   console.log("A user conected to socket: ", socket.id);
 
   socket.on("signal", ({ target, payload }) => {
-    console.log("something came");
     io.to(target).emit("signal", { source: socket.id, payload });
   });
 
@@ -121,6 +120,12 @@ io.on("connection", (socket) => {
       io.to(id).emit("win");
     } else if (roomsMap[id].game.currentTries == 4) {
       console.log("lost!", roomsMap[id].word);
+      roomsMap[id].game.board = roomsMap[id].game.board.map((row, i) => {
+        return {
+          ...row,
+          disabled: true,
+        };
+      });
       io.to(id).emit("board", roomsMap[id].game);
       io.to(id).emit("lost", roomsMap[id].word);
     } else {
@@ -134,4 +139,4 @@ io.on("connection", (socket) => {
   });
 });
 
-io.listen(Number(process.env.SIGNAL_SERVER!));
+io.listen(Number(process.env.NEXT_PUBLIC_SIGNAL_SERVER!));

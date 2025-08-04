@@ -44,7 +44,7 @@ export default function Collaborate() {
   useEffect(() => {
     if (roomId) {
       const socketInstance = io(
-        `${process.env.BASE_URL}:${process.env.SIGNAL_PORT}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}:${process.env.NEXT_PUBLIC_SIGNAL_SERVER}`,
       );
       setSocket(socketInstance);
 
@@ -99,7 +99,7 @@ export default function Collaborate() {
               className={styles.input}
               value={roomId}
               onChange={(s) => setRoomId(s.currentTarget.value)}
-              placeholder="enter room id"
+              placeholder="Enter room id"
             ></input>
             <button
               className={styles.btn}
@@ -108,7 +108,7 @@ export default function Collaborate() {
                 setJoin(true);
               }}
             >
-              Make
+              Join Room
             </button>
           </div>
         </div>

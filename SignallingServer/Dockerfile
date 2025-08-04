@@ -8,6 +8,6 @@ COPY . .
 #RUN yarn
 RUN yarn run build
 
-EXPOSE 3000
+EXPOSE 4301
 
-CMD ["yarn","start"]
+CMD ["yarn","run", "local:server"]
