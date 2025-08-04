@@ -1,7 +1,7 @@
 services:
   - type: web
     name: nextapp
-    env: docker
+    env: node
     plan: free
     dockerfilePath: ./Dockerfile
     autoDeploy: true
@@ -21,7 +21,7 @@ services:
       yarn install
     startCommand: |
       yarn run local:server
-    env: docker
+    env: node
     plan: free
     dockerfilePath: ./SignallingServer/Dockerfile
     autoDeploy: true
