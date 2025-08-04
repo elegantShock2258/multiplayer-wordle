@@ -36,5 +36,5 @@ yarn-error.log*
 next-env.d.ts
 *.css.map
 .env
-
+SignallingServer/node_modules
 docker-compose.yml

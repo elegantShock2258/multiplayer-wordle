@@ -12,9 +12,9 @@ services:
   - type: web
     name: signalserver
     buildCommand: |
-      yarn install
+      cd SignallingServer && yarn install && yarn build
     startCommand: |
-      yarn run local:server
+      cd SignallingServer && yarn start
     env: node
     plan: free
     autoDeploy: true
