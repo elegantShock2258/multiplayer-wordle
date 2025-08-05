@@ -45,6 +45,9 @@ export default function Collaborate() {
     if (roomId) {
       const socketInstance = io(
         `${process.env.NEXT_PUBLIC_BASE_URL}:${process.env.NEXT_PUBLIC_SIGNAL_SERVER}`,
+        {
+          transports: ["websocket", "polling"],
+        },
       );
       setSocket(socketInstance);
 
