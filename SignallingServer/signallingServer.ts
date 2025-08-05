@@ -16,7 +16,9 @@ const __dirname = dirname(__filename);
 const app = express();
 app.get("/", (_, res) => res.send("Signalling server is alive"));
 const server = http.createServer(app);
-const io = new Server(server, { cors: { origin: "*" } });
+const io = new Server(server, {
+  cors: { origin: "https://nextapp-papm.onrender.com/" },
+});
 
 type BoardRow = {
   disabled: boolean;
