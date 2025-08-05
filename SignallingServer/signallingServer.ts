@@ -6,6 +6,7 @@ import * as path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import dotenv from "dotenv";
+import express from "express";
 
 dotenv.config({ path: ".env" });
 
@@ -14,6 +15,7 @@ const __dirname = dirname(__filename);
 
 const server = http.createServer();
 const io = new Server(server, { cors: { origin: "*" } });
+const app = express();
 
 type BoardRow = {
   disabled: boolean;
@@ -139,7 +141,7 @@ io.on("connection", (socket) => {
   });
 });
 const PORT = Number(process.env.NEXT_PUBLIC_SIGNAL_SERVER || 4301);
-
+app.get("/", (_, res) => res.send("Signalling server is alive"));
 server.listen(PORT, "0.0.0.0", () => {
   console.log(`Signalling server running on port ${PORT}`);
 });
