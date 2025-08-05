@@ -17,7 +17,7 @@ const app = express();
 app.get("/", (_, res) => res.send("Signalling server is alive"));
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: { origin: "https://nextapp-papm.onrender.com/" },
+  cors: { origin: "*" },
 });
 
 type BoardRow = {
