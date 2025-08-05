@@ -43,12 +43,9 @@ export default function Collaborate() {
 
   useEffect(() => {
     if (roomId) {
-      const socketInstance = io(
-        `${process.env.NEXT_PUBLIC_BASE_URL}:${process.env.NEXT_PUBLIC_SIGNAL_SERVER}`,
-        {
-          transports: ["websocket", "polling"],
-        },
-      );
+      const socketInstance = io(process.env.NEXT_PUBLIC_BASE_URL, {
+        transports: ["websocket", "polling"],
+      });
       setSocket(socketInstance);
 
       socketInstance.on("lost", (word) => {
