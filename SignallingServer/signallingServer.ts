@@ -34,7 +34,7 @@ export const roomsMap: {
 } = {};
 
 function getRandomWord() {
-  const filePath = path.resolve(__dirname, "../assets/words.txt");
+  const filePath = path.resolve(__dirname, "./assets/words.txt");
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const lines = fileContent
     .split("\n")
