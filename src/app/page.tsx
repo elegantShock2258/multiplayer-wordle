@@ -22,7 +22,7 @@ export default function Collaborate() {
   const [rowPtr, setRowPtr] = useState<number>(0);
   const [update, setUpdate] = useState<boolean>(false);
 
-  const boardRefs = useRef<Array<React.RefObject<HTMLInputElement>>>(
+  const boardRefs = useRef<Array<React.RefObject<HTMLInputElement | null>>>(
     Array(5)
       .fill(null)
       .map(() => createRef()),
@@ -112,9 +112,9 @@ export default function Collaborate() {
           </div>
         </div>
       ) : (
-        <div className="flex w-full h-full items-center justify-center gap-5 flex-col">
+        <div className="flex w-screen h-screen items-center justify-center ">
           <div
-            className={`flex flex-col max-h-full max-w-full items-center justify-center ${styles.board}`}
+            className={`flex flex-col max-w-[80%] max-h-[80%] items-center justify-center ${styles.board}`}
           >
             {board.map((row, i) => {
               return (
@@ -123,6 +123,7 @@ export default function Collaborate() {
                   className={row.disabled ? styles.ipDisabeld : styles.ip}
                   key={i}
                   maxLength={5}
+                  inputMode="text"
                   onKeyDown={async (e) => {
                     const value = (e.target as HTMLInputElement).value;
 
