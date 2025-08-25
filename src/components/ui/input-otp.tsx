@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { OTPInput, OTPInputContext } from "input-otp";
+import { OTPInput, OTPInputContext, REGEXP_ONLY_CHARS } from "input-otp";
 import { Dot } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -11,6 +11,7 @@ const InputOTP = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof OTPInput>
 >(({ className, containerClassName, ...props }, ref) => (
   <OTPInput
+    pattern={REGEXP_ONLY_CHARS}
     ref={ref}
     containerClassName={cn(
       "flex items-center gap-2 has-[:disabled]:opacity-50",
