@@ -21,7 +21,6 @@ export default function Collaborate() {
   const [roomId, setRoomId] = useState<string | undefined>(undefined);
   const [rowPtr, setRowPtr] = useState<number>(0);
   const [update, setUpdate] = useState<boolean>(false);
-  const word = "dance";
 
   const boardRefs = useRef<Array<React.RefObject<HTMLInputElement>>>(
     Array(5)
