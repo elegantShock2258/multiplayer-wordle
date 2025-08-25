@@ -19,6 +19,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: { origin: "*" },
 });
+app.use("/assets", express.static("assets"));
 
 type BoardRow = {
   disabled: boolean;
@@ -35,6 +36,7 @@ export const roomsMap: {
 
 function getRandomWord() {
   const filePath = path.resolve(__dirname, "./assets/words.txt");
+
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const lines = fileContent
     .split("\n")
