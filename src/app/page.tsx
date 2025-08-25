@@ -114,7 +114,7 @@ export default function Collaborate() {
       ) : (
         <div className="flex w-full h-full items-center justify-center gap-5 flex-col">
           <div
-            className={`flex flex-col items-center justify-center ${styles.board}`}
+            className={`flex flex-col max-h-full max-w-full items-center justify-center ${styles.board}`}
           >
             {board.map((row, i) => {
               return (
