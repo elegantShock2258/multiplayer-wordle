@@ -9,6 +9,10 @@
     justify-content: center
     flex-direction: column
 
+.disabled
+    filter: blur(10px)
+    background-color: #ffffff80
+
 .content
     display: flex
     align-items: center
@@ -20,13 +24,30 @@
     font-size: 2rem
     text-align: center
 .input
-    font-size: 3.5rem
-    font-style: italic
+    font-size: 2.5rem
     outline: none !important
     color: grey
     background-color: black
     width: 100%
     text-align: center
+.ipDisabled
+    font-weight: 400
+    font-style: normal
+
+.blinker
+    animation: blinker infinite 1.8s
+
+    @keyframes blinker
+        0%
+            background-color: black
+            color: white
+        50%
+            background-color: white
+            color: black
+        100%
+            background-color: black
+            color: white
+
 .btn
     font-size: 2rem
     border-bottom: 2px dashed white
@@ -35,10 +56,32 @@
     border-color: white
     font-size: 2rem
 .yellow
-    background-color: yellow
+    animation: bg infinite 6s
+
+    @keyframes bg
+        0%
+            background-color: yellow
+            color: black
+        50%
+            background-color: black
+            color: yellow
+        100%
+            background-color: yellow
+            color: black
 .green
-    background-color: green
+    animation: bgg infinite 4s
+
+    @keyframes bgg
+        0%
+            background-color: green
+            color: white
+        50%
+            background-color: #ffffff9c
+            color: green
+        100%
+            background-color: green
+            color: white
 .gray
-    background-color: black
+    background-color: #ffffff80
 .board
     transform: scale(0.9)

@@ -4,7 +4,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { createRef, useEffect, useRef, useState } from "react";
+import { createRef, Suspense, useEffect, useRef, useState } from "react";
 import io, { Socket } from "socket.io-client";
 import styles from "./home.module.sass";
 import { CheckWordExists } from "./server/actions/checkWord";
@@ -39,6 +39,7 @@ export default function Collaborate() {
   );
 
   const [join, setJoin] = useState(false);
+  const [wait, setWait] = useState(true);
 
   useEffect(() => {
     if (roomId) {
@@ -58,6 +59,11 @@ export default function Collaborate() {
         console.log(word);
 
         toast((word as string).toLocaleUpperCase());
+      });
+      socketInstance.on("wait", () => {
+        console.log("waiting");
+        setWait(true);
+        toast("waitinf");
       });
       socketInstance.emit("join", roomId);
       socketInstance.on("win", () => {
@@ -82,6 +88,7 @@ export default function Collaborate() {
           };
         });
         setBoard(y);
+        setWait(false);
         setRowPtr(game.currentTries);
       });
     }
@@ -95,7 +102,7 @@ export default function Collaborate() {
           <div className={`${styles.content}`}>
             <h1 className={styles.h1}>Hi, please enter a room code.</h1>
             <input
-              className={styles.input}
+              className={`${styles.input} ${styles.blinker}`}
               value={roomId}
               onChange={(s) => setRoomId(s.currentTarget.value)}
               placeholder="Enter room id"
@@ -104,6 +111,7 @@ export default function Collaborate() {
               className={styles.btn}
               onClick={(e) => {
                 setUpdate(true);
+                setWait(true);
                 setJoin(true);
               }}
             >
@@ -111,8 +119,12 @@ export default function Collaborate() {
             </button>
           </div>
         </div>
+      ) : wait ? (
+        <div className="flex w-full h-full items-center justify-center text-center">
+          Waiting for other user to join...
+        </div>
       ) : (
-        <div className="flex w-screen h-screen items-center justify-center ">
+        <div className={`flex w-screen h-screen items-center justify-center`}>
           <div
             className={`flex flex-col max-w-[80%] max-h-[80%] items-center justify-center ${styles.board}`}
           >
@@ -120,7 +132,7 @@ export default function Collaborate() {
               return (
                 <InputOTP
                   ref={boardRefs.current[i]}
-                  className={row.disabled ? styles.ipDisabeld : styles.ip}
+                  className={`${row.disabled ? styles.ipDisabled : styles.ip}`}
                   key={i}
                   maxLength={5}
                   inputMode="text"
@@ -166,7 +178,7 @@ export default function Collaborate() {
                           key={i}
                           index={i}
                           value={char}
-                          className={`${row.class[i] == "y" ? styles.yellow : row.class[i] == "g" ? styles.green : row.class[i] == "gr" ? styles.gray : ""} ${styles.cell}`}
+                          className={`press-start-regular ${row.class[i] == "y" ? styles.yellow : row.class[i] == "g" ? styles.green : row.class[i] == "gr" ? styles.gray : ""} ${styles.cell}`}
                         />
                       );
                     })}

@@ -111,6 +111,7 @@ io.on("connection", (socket) => {
     size = y ? y.size : 1;
     console.log(`socket ${socket.id} joined ${room} room  - ${size}`);
 
+    if (size == 1) io.to(room).emit("wait");
     if (size == 2) io.to(room).emit("board", roomsMap[room].game);
   });
 
